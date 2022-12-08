@@ -10,6 +10,9 @@
 ! WHAT'S NEW: I created a new module, mod_numerical.f90, where I store
 ! all numerical routines. In the module mode_baselib.f90 I store instead
 ! procedures related to this specific project (utility function, etc.)
+! IMPORTANT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Create the subfolder 'output' in your current directory.  <====
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !=============================================================================
     
     
