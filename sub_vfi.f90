@@ -53,7 +53,7 @@ subroutine sub_vfi()
         EV = matmul(V,transpose(PZ))
         
         !Loop over exogenous state "z"
-        !$omp parallel private(ia,PZ_iz,c_ub,optim,f_max)
+        !$omp parallel if (par_fortran==1) private(ia,PZ_iz,c_ub,optim,f_max)
         !$omp do collapse(2)
         !EVz,a_today and z_today are global variables defined as "threadprivate"
         !in module mod_param.f90 (see also comment at the start of this file)

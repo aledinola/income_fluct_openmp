@@ -8,6 +8,7 @@ module mod_param
     !integer, parameter :: dp = kind(0.0d0)
     real(8), parameter :: large_negative = -1d100 !-10.0d0**25
     real(8), parameter :: small   = 1.0d-8
+	integer, parameter :: par_fortran = 1
     character(len=*), parameter :: savedir='output\'
     
     

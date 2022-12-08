@@ -34,9 +34,9 @@
     !Assign values to parameters and grids
     beta     = 0.96d0
     r        = 0.03d0
-    PZ(1,:)  = (/0.6d0, 0.40d0/)
-    PZ(2,:)  = (/0.05d0, 0.95d0/)
-    z_vals   = (/0.5d0, 1.0d0/)
+    PZ(1,:)  = [0.6d0, 0.40d0]
+    PZ(2,:)  = [0.05d0, 0.95d0]
+    z_vals   = [0.5d0, 1.0d0]
     b        = 0d0 !borrowing limit
     grid_max = 4.0d0 !upper bound for assets
     s        = 1.0d0  !linear spacing
@@ -96,7 +96,7 @@
     allocate(a_pol(na,nz))
     
     !outputs: TV (final value function), Policy functions (real variabl): c_pol, a_pol
-    call sub_vfi(v0,TV,c_pol,a_pol)
+    call sub_vfi()
     
     !check
     if (disp_on_screen==1) then
