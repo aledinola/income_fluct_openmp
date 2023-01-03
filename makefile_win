@@ -1,0 +1,36 @@
+# Select Compiler
+COMPILER =  ifort
+
+# /fast should be a bundle of /O3 /Qipo /Qprec-div-
+# /Ofast =  -O3, -no-prec-div, and -fp-model fast=2.
+SWITCH =  /Ofast /Qopenmp /heap-arrays0 /wrap-margin- /Qmkl 
+#SWITCH =  /fast /Qopenmp /wrap-margin-
+#SWITCH = /O0 /warn:all /check:all
+#SWITCH = /fast
+
+SRCS = mod_numerical.f90 mod_param.f90 mod_baselib.f90 sub_vfi.f90 sub_write.f90 main.f90 
+
+EXEC = run_win.exe
+
+ifort:
+	$(COMPILER) -fpp $(SWITCH) $(SRCS) -o $(EXEC)
+	
+# Cleaning everything
+
+clean:
+	del *.mod
+	del *.obj
+	del *.pdb
+	del *.ilk
+	del $(EXEC)
+
+#To compile in Mac, type:
+# $ make -f makefile_mac
+
+#To compile in Windows, type:
+# $ nmake /f makefile_win
+# option flag /heap-arrays0
+# option for openMP:
+# /Qopenmp
+# to store all arrays on the heap
+# see https://community.intel.com/t5/Intel-Fortran-Compiler/allocatable-automatic-stack-heap/m-p/1229091#M152713
