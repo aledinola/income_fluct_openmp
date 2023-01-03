@@ -17,6 +17,9 @@ subroutine sub_write
  !   !Note: Method 1 requires that you define array mu_vec in advance !!!!!!!
     
     !--------- END EXAMPLE METHOD 1 --------------------------------!
+	
+	! 
+	call create_directory( savedir )
     
     open(15,file=savedir//'constants.txt', status='replace')
     write(15,*) beta
@@ -66,3 +69,28 @@ subroutine sub_write
    
               
 end subroutine sub_write
+
+subroutine create_directory( newDirPath )
+    ! Author:  Jess Vriesema
+    ! Date:    Spring 2011
+    ! Purpose: Creates a directory at ./newDirPath
+
+    implicit none
+
+    character(len=*), intent(in) :: newDirPath
+    character(len=256)           :: mkdirCmd
+    logical                      :: dirExists
+
+    ! Check if the directory exists first
+!   inquire( file=trim(newDirPath)//'/.', exist=dirExists )  ! Works with gfortran, but not ifort
+    inquire( directory=newDirPath, exist=dirExists )         ! Works with ifort, but not gfortran
+
+
+    if (dirExists) then
+!      write (*,*) "Directory already exists: '"//trim(newDirPath)//"'"
+    else
+        mkdirCmd = 'mkdir -p '//trim(newDirPath)
+        write(*,'(a)') "Creating new directory: '"//trim(mkdirCmd)//"'"
+        call system( mkdirCmd )
+    endif
+end subroutine create_directory
